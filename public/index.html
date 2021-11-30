@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/ja.js"
+    ></script>
+    <!-- //tuika -->
+
+    <!-- //tuika -->
+
+    <link rel="stylesheet" href="stylesheets/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <select id="select2">
+        <option></option>
+        <optgroup label="channel" id="Channel">
+          <option value="general" onclick="moveToRoom(`general`)">
+            #genral
+          </option>
+          <option value="random" onclick="moveToRoom(`random`)">#random</option>
+        </optgroup>
+        <optgroup label="user" id="User"></optgroup>
+      </select>
+    </header>
+    <script>
+
+    </script>
+    <div class="space"></div>
+    <div id="container">
+      <div id="left">
+        <div class="online">
+            <img src="images/logo.PNG" id="logo">         
+          <p class="js-modal-open" href="">下書き</p>
+          <div class="modal js-modal">
+            <div class="modal__bg js-modal-close"></div>
+            <div class="modal__content">
+              <textarea
+                name=""
+                id="copy"
+                cols="60"
+                rows="10"
+                style="font-size: 20px"
+              ></textarea
+              ><br />
+              <a class="js-modal-close" href="">閉じる</a>
+              <button onclick="cp()">コピー</button>
+            </div>
+          </div>
+          <details open>
+            <summary>チャンネル</summary>
+            <div class="channel_list">
+              <button onclick="moveToRoom(`general`)" id="general"># general</button><br />
+              <button onclick="moveToRoom(`random`)" id="random"># random</button><br />
+            </div>
+          </details>
+          <details open>
+            <summary>ダイレクトメッセージ</summary>
+            <div class="DM_list"></div>
+          </details>
+          <input
+            type="button"
+            name="buttonName"
+            class="addbutton"
+            id="addPributton"
+            value="+"
+            onClick="addprivateroom()"
+          />
+          <input
+            type="text"
+            id="privateroomtext"
+            placeholder="#プライベートchを追加"
+          />
+          <br />
+          <input
+            type="button"
+            name="buttonName"
+            class="addbutton"
+            id="addRoombutton"
+            value="+"
+            onClick="addroom()"
+          />
+          <input
+            type="text"
+            id="roomtext"
+            placeholder="#チャンネルを追加する"
+          />
+          <br />
+          <input
+            type="button"
+            name="buttonName"
+            class="addbutton"
+            id="addDMbutton"
+            value="+"
+            onClick="addDMroom()"
+          />
+          <input type="text" id="DMtext" placeholder="【DM】送りたい人の名前" />
+          <!-- <button onclick="addroom()">追加</button> -->
+
+        <img id='myimg' src="" alt="">
+
+          <p>チームメンバー</p>
+          <ul class="online_user"></ul>
+
+          <p class="adduser">チームメンバーを追加</p>
+
+          <input
+            type="button"
+            name="buttonName"
+            id="addbutton"
+            value="+"
+            onClick="window.open('localhost:3000','_blank')"
+          />
+        </div>
+        <button><a href="//localhost:8080" target=”_blank”>ビデオチャット</a></button>
+
+      </div>
+
+      <div id="center">
+        <h3># general</h3>
+        <button id="date"></button>
+        <ul id="messages"></ul>
+      </div>
+
+      <div>
+        <div id="display"></div>
+
+        <form id="form" action="">
+          <textarea class="typing_alert"></textarea>
+
+          <input
+            type="text"
+            id="input"
+            placeholder="#チャンネルにメッセージを送信する"
+            autocomplete="off"
+          /><button id="send">Send</button>
+
+          <label id="fileform">
+            <img
+              src="http://drive.google.com/uc?export=view&id=1wwy-KGgx5QOl5qnk84TgqPKWEXLeaT15"
+              alt=""
+            />
+            <input type="file" id="file" style="display: none" />
+
+          </label>
+        </form>
+      </div>
+    </div>
+    
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="front.js"></script>
+    <script src="firebase.js" type="module"></script>
+    
+  </body>
+</html>
